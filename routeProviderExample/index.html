@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html ng-app="appDemo">
+<head>
+	<title>Angular Modules, Routes and Factories</title>	
+
+	<meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+	<meta content="utf-8" http-equiv="encoding">
+
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+
+	<!-- Optional theme -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+
+	<!-- Jquery minified -->
+	<script src="https://code.jquery.com/jquery-1.11.2.min.js"></script>
+
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+
+	<!-- Angular JS cdn -->
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.13/angular.min.js"></script>
+
+	<!-- Separate angular module [angular-route] -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.3.14/angular-route.js"></script>
+
+
+</head>
+<body>
+<div class="container">
+	<br />
+
+	<!-- Placeholder for views -->
+	<div ng-view=""></div>
+
+</div>
+
+	<script>
+(function(){
+		var app_module = angular.module('appDemo', ['ngRoute']);
+
+		app_module.config(['$routeProvider',
+			function ($routeProvider) {
+			$routeProvider
+			.when('/', 
+			{
+				controller: 'personController',
+				templateUrl: 'partials/view1.html'
+			})
+			.when('/view2', 
+			{
+				controller: 'personController',
+				templateUrl: 'partials/view2.html'
+			})
+			.otherwise(
+				{
+					redirectTo: '/'
+				}
+			);
+		}]);		
+
+		app_module.controller('personController', ['$scope', personController]);	
+
+		function personController($scope) {
+			$scope.people=[
+				{name:'Tshepo', city:'Pretoria'},
+				{name:'Tshepiso',city:'Durban'}, 
+				{name:'Tshepang', city:'Cape Town'}, 
+				{name:'Thabo', city:'Polokwane'}, 
+				{name:'Thabiso', city:'Bloemfontein'}, 
+				{name:'Tshegofatso', city:'Pretoria'}
+			];
+
+			$scope.password = "s3cR3T";
+
+			$scope.addNewPerson = function() {
+				$scope.people.push(
+				{
+					name: $scope.newPerson.personName,
+					city: $scope.newPerson.personCity
+				});
+			};
+		}
+})(); 
+	</script>
+
+</body>
+</html>

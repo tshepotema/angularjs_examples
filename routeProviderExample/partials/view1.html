@@ -1,0 +1,30 @@
+<div class="row">
+	<h1>View Numero Uno</h1>
+	{{ "Search for : " + username }} <br /><br />
+	Username: 
+	<input type="text" ng-model="username" /> 
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Password:
+	<input type="password" ng-model="password" /> &nbsp;&nbsp; {{ password }}
+	<br /><br />
+</div>
+
+<div>
+<h3>People in cities</h3>
+	<ol>
+		<li ng-repeat="person in people | filter:username">{{ person.name }} - {{ person.city }}</li>
+	</ol>
+</div>
+<br />
+<br />
+<h2>Add a new Person</h2>
+<br/>
+Name:  
+<input type="text" ng-model="newPerson.personName" />
+<br />
+City:  
+<input type="text" ng-model="newPerson.personCity" />
+<br />
+<button ng-click="addNewPerson()">Add Person</button>
+<br />
+<a href="#view2">View 2</a>

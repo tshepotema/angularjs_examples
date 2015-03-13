@@ -1,0 +1,23 @@
+<div class="row">
+	<h1>View 2</h1>
+	<br />
+	<h3>Just view the changes</h3>
+	<br />
+	{{ "Search for : " + username }} <br /><br />
+	Username: 
+	<input type="text" ng-model="username" /> 
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+	Password:
+	<input type="password" ng-model="password" /> &nbsp;&nbsp; {{ password }}
+	<br /><br />
+</div>
+
+<div>
+<h3>People in cities</h3>
+	<ol>
+		<li ng-repeat="person in people | filter:username">{{ person.name }} - {{ person.city }}</li>
+	</ol>
+</div>
+<br />
+<br />
+<a href="#view1">Back to View 1</a>
